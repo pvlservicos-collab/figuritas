@@ -22,7 +22,7 @@ async function getModeloComprimido(): Promise<Buffer> {
 
   let rawBuffer: Buffer;
   try {
-    const modeloPath = join(process.cwd(), "public", "modelo-figurinha.jpg");
+    const modeloPath = join(process.cwd(), "public", "modelo-figurita.webp");
     rawBuffer = readFileSync(modeloPath);
     console.log("modelo: carregado do filesystem");
   } catch (fsErr) {
@@ -31,8 +31,8 @@ async function getModeloComprimido(): Promise<Buffer> {
       ? `https://${process.env.VERCEL_URL}`
       : process.env.NEXT_PUBLIC_URL ?? "http://localhost:3000";
     console.log(`modelo: filesystem falhou (${fsErr instanceof Error ? fsErr.message : fsErr}), buscando via HTTP de ${host}`);
-    const res = await fetch(`${host}/modelo-figurinha.jpg`);
-    if (!res.ok) throw new Error(`HTTP ${res.status} ao buscar modelo-figurinha.jpg`);
+    const res = await fetch(`${host}/modelo-figurita.webp`);
+    if (!res.ok) throw new Error(`HTTP ${res.status} ao buscar modelo-figurita.webp`);
     rawBuffer = Buffer.from(await res.arrayBuffer());
   }
 

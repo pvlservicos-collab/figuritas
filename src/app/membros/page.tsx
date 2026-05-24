@@ -83,7 +83,7 @@ const CATALOG: CatalogProduct[] = [
     section: "main",
     name: "Pacotinho Copa 2026",
     desc: "Deixe a experiência mais imersiva com o PDF dos pacotinhos oficiais",
-    renderImage: (bought) => <ProductImg src="/kitembalagem.jpg" alt="Kit Embalagem Copa 2026" bought={bought} />,
+    renderImage: (bought) => <ProductImg src="/embalagensfigurinhas.webp" alt="Kit Embalagem Copa 2026" bought={bought} />,
     acquireUrl: "https://checkout.figurinhadacopadomundo.com/VCCL1O8SD2HQ",
     downloadLabel: "Baixar PDF",
     checkBought: (d) =>
@@ -100,9 +100,9 @@ const CATALOG: CatalogProduct[] = [
   {
     id: "neymar",
     section: "main",
-    name: "Figurinha Neymar",
+    name: "Figurinha Messi",
     desc: "Camisa da seleção — pacote em PDF para impressão",
-    renderImage: (bought) => <ProductImg src="/figurinhaney.jpg" alt="Figurinha Neymar" bought={bought} />,
+    renderImage: (bought) => <ProductImg src="/figurinhamessi.webp" alt="Figurinha Messi" bought={bought} />,
     acquireUrl: "https://checkout.figurinhadacopadomundo.com/VCCL1O8SD2HT",
     checkBought: (d) =>
       d.items.some(i =>
@@ -119,7 +119,7 @@ const CATALOG: CatalogProduct[] = [
     section: "main",
     name: "Poster A4",
     desc: "Baixe o PDF para imprimir e postar em sua casa",
-    renderImage: (bought) => <ProductImg src="/Posterpdf.jpg" alt="Poster A4 PDF" bought={bought} />,
+    renderImage: (bought) => <ProductImg src="/poster.webp" alt="Poster A4 PDF" bought={bought} />,
     acquireUrl: "https://checkout.figurinhadacopadomundo.com/VCCL1O8SD2HR",
     checkBought: (d) =>
       d.items.some(i =>
@@ -436,7 +436,7 @@ function PosterA4Card({ data, width = 250 }: { data: MemberData; width?: number 
       <div className="poster-card-inner">
         {/* Image */}
         <div className="poster-card-image" style={{ position: "relative", overflow: "hidden", flexShrink: 0 }}>
-          <ProductImg src="/Posterpdf.jpg" alt="Poster A4" bought={bought} />
+          <ProductImg src="/poster.webp" alt="Poster A4" bought={bought} />
           {!bought && (
             <div style={{
               position: "absolute", inset: 0, background: "rgba(15,15,15,.5)",
@@ -509,7 +509,7 @@ function NeymarCard({ data, width = 250 }: { data: MemberData; width?: number })
       border: bought ? "2px solid #002395" : "2px solid transparent",
     }}>
       <div style={{ position: "relative", width: "100%", aspectRatio: "1/1", overflow: "hidden" }}>
-        <ProductImg src="/figurinhaney.jpg" alt="Figurinha Neymar" bought={bought} />
+        <ProductImg src="/figurinhamessi.webp" alt="Figurinha Messi" bought={bought} />
         {!bought && (
           <div style={{
             position: "absolute", inset: 0, background: "rgba(15,15,15,.5)",
@@ -527,13 +527,13 @@ function NeymarCard({ data, width = 250 }: { data: MemberData; width?: number })
         )}
       </div>
       <div style={{ padding: "16px 18px 18px" }}>
-        <p style={{ margin: "0 0 4px", fontSize: 15, fontWeight: 800, color: "#0f172a", lineHeight: 1.25 }}>Figurinha Neymar</p>
-        <p style={{ margin: "0 0 14px", fontSize: 12, color: "#64748b", lineHeight: 1.5 }}>Figurinha exclusiva do neymar para download em PNG ou em PDF para impressão</p>
+        <p style={{ margin: "0 0 4px", fontSize: 15, fontWeight: 800, color: "#0f172a", lineHeight: 1.25 }}>Figurinha Messi</p>
+        <p style={{ margin: "0 0 14px", fontSize: 12, color: "#64748b", lineHeight: 1.5 }}>Figurinha exclusiva do Messi para download ou em PDF para impressão</p>
         {bought ? (
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
             <a
-              href="/figurinhaneymar.png"
-              download="figurinha-neymar.png"
+              href="/figurinhamessi.webp"
+              download="figurinha-messi.webp"
               style={{
                 display: "block", textAlign: "center",
                 background: "#002395", color: "#fff",
@@ -542,8 +542,8 @@ function NeymarCard({ data, width = 250 }: { data: MemberData; width?: number })
               }}
             >⬇ Baixar PNG</a>
             <a
-              href="/figurinha-neymar-impressão-grade-4x4.pdf"
-              download="figurinha-neymar-grade-4x4.pdf"
+              href="/Fig messi imprimir.pdf"
+              download="figurinha-messi-imprimir.pdf"
               style={{
                 display: "block", textAlign: "center",
                 background: "#f8fafc", color: "#334155",
