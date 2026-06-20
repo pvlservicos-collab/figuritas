@@ -8,7 +8,7 @@ import LoadingScreen from "@/components/LoadingScreen";
 import ResultScreen from "@/components/ResultScreen";
 import ConfirmScreen from "@/components/ConfirmScreen";
 import { track } from "@/lib/track";
-import { DEFAULT_CONFIG } from "@/lib/config";
+import { DEFAULT_CONFIG } from "@/lib/config-defaults";
 
 function compressToBase64(file: File, maxSize = 512, quality = 0.7): Promise<string> {
   return new Promise((resolve, reject) => {

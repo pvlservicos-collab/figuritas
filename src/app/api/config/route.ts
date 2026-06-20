@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getDb } from "@/lib/db";
 import { validateAdminRequest } from "@/lib/adminAuth";
-import { DEFAULT_CONFIG } from "@/lib/config";
-import type { SiteConfig } from "@/lib/config";
+import { DEFAULT_CONFIG } from "@/lib/config-defaults";
+import type { SiteConfig } from "@/lib/config-defaults";
 
 export async function GET(req: NextRequest) {
   if (!validateAdminRequest(req)) {

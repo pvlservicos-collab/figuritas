@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { DEFAULT_CONFIG } from "@/lib/config";
-import type { SiteConfig } from "@/lib/config";
+import { DEFAULT_CONFIG } from "@/lib/config-defaults";
+import type { SiteConfig } from "@/lib/config-defaults";
 
 type Tab = "config" | "check";
 
