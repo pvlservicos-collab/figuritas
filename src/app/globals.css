@@ -58,6 +58,11 @@ body {
   font-family: 'Papernotes', cursive;
 }
 
+/* Oculta elementos visuais do script Cartpanda sem quebrar o tracking */
+[class^="cpd-"], [class*=" cpd-"], [id^="cpd-"], [id^="cartpanda-"] {
+  display: none !important;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;

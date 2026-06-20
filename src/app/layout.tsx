@@ -28,6 +28,8 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet" />
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script dangerouslySetInnerHTML={{ __html: `window.pixelId = "6a1915dda9b3c3e00a76276a"; var a = document.createElement("script"); a.setAttribute("async", ""); a.setAttribute("defer", ""); a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js"); document.head.appendChild(a);` }} />
+        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+        <script type="text/javascript" src="https://assets.mycartpanda.com/cartx-ecomm-ui-assets/js/cpsales.js"></script>
       </head>
       <body className="min-h-full flex flex-col">
         {children}
