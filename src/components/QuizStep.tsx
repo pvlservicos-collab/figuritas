@@ -5,7 +5,7 @@ import { useState, useRef, useEffect } from "react";
 export interface QuizData {
   nome: string;
   dataNascimento: string;
-  telefone: string;
+  email: string;
   clube: string;
   jogadorFavorito: string;
   peso: string;
@@ -13,17 +13,8 @@ export interface QuizData {
   foto: File | null;
 }
 
-function formatPhone(input: string): string {
-  let digits = input.replace(/\D/g, "");
-  // Remove código do país: +54 / 54 / 0054
-  if (digits.startsWith("0054")) digits = digits.slice(4);
-  else if (digits.startsWith("54") && digits.length > 10) digits = digits.slice(2);
-  digits = digits.slice(0, 10);
-  const n = digits.length;
-  if (n === 0) return "";
-  if (n <= 2) return `(${digits}`;
-  if (n <= 6) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
-  return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`;
+function isValidEmail(value: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
 }
 
 interface QuizStepProps {
@@ -100,8 +91,7 @@ export default function QuizStep({ step, data, updateData, onNext, onBack, total
           const age = now.getFullYear() - birth.getFullYear();
           if (age < 0 || age > 120) newErrors.dataNascimento = "Fecha inválida";
         }
-        { const digits = data.telefone.replace(/\D/g, "");
-          if (digits.length < 8) newErrors.telefone = "Ingresá un teléfono válido con código de área"; }
+        if (!data.email || !isValidEmail(data.email)) newErrors.email = "Ingresá un correo electrónico válido";
         break;
       case 3:
         if (!data.clube || data.clube.trim().length < 2) newErrors.clube = "Escribí o seleccioná un club";
@@ -277,23 +267,22 @@ export default function QuizStep({ step, data, updateData, onNext, onBack, total
             </div>
             {errors.dataNascimento && <p className="text-red-500 text-sm mt-1">{errors.dataNascimento}</p>}
 
-            {/* Teléfono */}
+            {/* Email */}
             <div>
               <label className="block text-lg font-bold mb-1 text-copa-blue" style={{ fontFamily: "var(--font-titulo)" }}>
-                TU WHATSAPP
+                TU EMAIL
               </label>
               <input
-                type="tel"
-                value={data.telefone}
-                onChange={(e) => updateData({ telefone: formatPhone(e.target.value) })}
-                placeholder="(11) 1234-5678"
-                maxLength={14}
-                autoComplete="tel"
-                inputMode="numeric"
+                type="email"
+                value={data.email}
+                onChange={(e) => updateData({ email: e.target.value.trim() })}
+                placeholder="ejemplo@correo.com"
+                maxLength={255}
+                autoComplete="email"
                 className="w-full px-4 py-4 text-lg border-2 border-gray-200 rounded-xl focus:border-copa-blue focus:outline-none transition-colors placeholder:text-gray-400"
                 style={{ fontFamily: "var(--font-papernotes)" }}
               />
-              {errors.telefone && <p className="text-red-500 text-sm mt-1">{errors.telefone}</p>}
+              {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
             </div>
           </div>
         )}

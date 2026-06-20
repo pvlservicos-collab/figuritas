@@ -106,6 +106,14 @@ export async function GET(req: NextRequest) {
     await sql`CREATE INDEX IF NOT EXISTS idx_pedido_items_email ON pedido_items(email)`;
     await sql`CREATE INDEX IF NOT EXISTS idx_webhook_processed_key ON webhook_processed(idempotency_key)`;
 
+    await sql`
+      CREATE TABLE IF NOT EXISTS site_config (
+        id int PRIMARY KEY DEFAULT 1,
+        data jsonb NOT NULL DEFAULT '{}'::jsonb,
+        updated_at timestamptz NOT NULL DEFAULT now()
+      )
+    `;
+
     return NextResponse.json({ ok: true, message: "Tabelas criadas com sucesso" });
   } catch (error) {
     const errMsg = error instanceof Error ? error.message : String(error);

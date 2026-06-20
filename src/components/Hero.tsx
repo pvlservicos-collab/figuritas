@@ -4,9 +4,10 @@ import Image from "next/image";
 
 interface HeroProps {
   onStart: () => void;
+  ctaText?: string;
 }
 
-export default function Hero({ onStart }: HeroProps) {
+export default function Hero({ onStart, ctaText = "CREAR MI FIGURITA" }: HeroProps) {
   return (
     <section className="flex flex-col items-center min-h-[100dvh] w-full px-5 pt-8 pb-4 text-center overflow-x-hidden justify-center gap-3 md:gap-2 md:py-6" style={{ background: "#74ACDF", position: "relative" }}>
       <a href="/ver-preco" style={{ position: "absolute", top: 10, right: 12, fontSize: 10, color: "rgba(0,0,0,0.25)", textDecoration: "none", fontFamily: "monospace" }}>💲 preço</a>
@@ -100,7 +101,7 @@ export default function Hero({ onStart }: HeroProps) {
           cursor-pointer tracking-[0.15em]"
         style={{ fontFamily: "var(--font-titulo)" }}
       >
-        CREAR MI FIGURITA
+        {ctaText}
       </button>
 
       <div className="mt-2 flex flex-col items-center gap-2">

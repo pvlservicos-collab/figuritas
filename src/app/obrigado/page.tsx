@@ -7,19 +7,19 @@ import { track } from "@/lib/track";
 const FAQ_ITEMS = [
   {
     q: "¿Cuándo voy a recibir mi figurita?",
-    a: "Tu figurita se genera automáticamente y podés acceder a ella desde el área de entregables con tu número de WhatsApp.",
+    a: "Tu figurita se genera automáticamente y podés acceder a ella desde el área de entregables con tu email.",
   },
   {
     q: "¿Cómo descargo mi figurita?",
-    a: "Ingresá tu número abajo, accedé al área de entregables y hacé clic en '⬇ Descargar PNG'.",
+    a: "Ingresá tu email abajo, accedé al área de entregables y hacé clic en '⬇ Descargar PNG'.",
   },
   {
     q: "Compré más de 1 producto",
-    a: "Ingresá tu número en el formulario de abajo para acceder al área de entregables con todos tus productos.",
+    a: "Ingresá tu email en el formulario de abajo para acceder al área de entregables con todos tus productos.",
   },
   {
     q: "¿La figurita es digital o física?",
-    a: "Tu figurita es una imagen digital (PNG) lista para compartir por WhatsApp, redes sociales o imprimir en casa.",
+    a: "Tu figurita es una imagen digital (PNG) lista para compartir por redes sociales o imprimir en casa.",
   },
 ];
 
@@ -132,7 +132,7 @@ function FaqBubble() {
 export default function Obrigado() {
   const router = useRouter();
 
-  const [phone, setPhone] = useState("");
+  const [emailInput, setEmailInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -140,22 +140,25 @@ export default function Obrigado() {
     track("obrigado");
 
     const params = new URLSearchParams(window.location.search);
-    const foneParam = params.get("fone");
-    if (foneParam) {
-      const digits = foneParam.replace(/\D/g, "").slice(0, 15);
-      if (digits.length >= 10) { router.replace(`/membros?fone=${digits}`); return; }
+    const emailParam = params.get("email");
+    if (emailParam && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailParam.trim())) {
+      router.replace(`/membros?email=${encodeURIComponent(emailParam.trim().toLowerCase())}`);
+      return;
     }
   }, [router]);
 
   const handleLogin = async () => {
-    const digits = phone.replace(/\D/g, "");
-    if (digits.length < 10) { setError("Ingresá un número válido con código de área."); return; }
+    const emailVal = emailInput.trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
+      setError("Ingresá un correo electrónico válido.");
+      return;
+    }
     setLoading(true); setError(null);
     try {
-      const res = await fetch(`/api/membros?fone=${digits}`);
-      if (res.status === 404) { setError("Ninguna compra encontrada para ese número."); return; }
+      const res = await fetch(`/api/membros?email=${encodeURIComponent(emailVal)}`);
+      if (res.status === 404) { setError("Ninguna compra encontrada para ese email."); return; }
       if (!res.ok) throw new Error();
-      router.push(`/membros?fone=${digits}`);
+      router.push(`/membros?email=${encodeURIComponent(emailVal)}`);
     } catch {
       setError("Error al verificar. Intentá de nuevo.");
     } finally {
@@ -187,28 +190,28 @@ export default function Obrigado() {
       <div style={{ width: "100%", maxWidth: 480 }}>
         <div style={{ background: "#fff", borderRadius: 24, padding: "32px 28px", boxShadow: "0 20px 60px rgba(0,0,0,.25)" }}>
           <h2 style={{ fontSize: 20, fontWeight: 800, color: "#002395", margin: "0 0 8px", display: "flex", alignItems: "center", gap: 8 }}>
-            📱 Descargá tu figurita con tu número:
+            ✉️ Descargá tu figurita con tu email:
           </h2>
           <p style={{ fontSize: 14, color: "#64748b", margin: "0 0 20px", fontFamily: "var(--font-papernotes)" }}>
-            Escribí tu WhatsApp (sin +54) para acceder a tu figurita y todos tus productos.
+            Escribí el email que usaste en la compra para acceder a tu figurita y todos tus productos.
           </p>
 
           <input
-            type="tel"
-            inputMode="numeric"
-            placeholder="Ej: 1123456789"
-            value={phone}
-            maxLength={15}
+            type="email"
+            inputMode="email"
+            placeholder="ejemplo@correo.com"
+            value={emailInput}
+            maxLength={255}
             disabled={loading}
             autoFocus
-            onChange={e => { setPhone(e.target.value.replace(/\D/g, "")); setError(null); }}
+            onChange={e => { setEmailInput(e.target.value); setError(null); }}
             onKeyDown={e => e.key === "Enter" && !loading && handleLogin()}
             style={{
               width: "100%", boxSizing: "border-box",
               border: `2px solid ${error ? "#ef4444" : "#002395"}`,
               borderRadius: 14, padding: "16px 18px",
-              fontSize: 18, outline: "none", color: "#0f172a",
-              fontWeight: 600, letterSpacing: ".04em",
+              fontSize: 16, outline: "none", color: "#0f172a",
+              fontWeight: 600, letterSpacing: ".01em",
               marginBottom: 12, textAlign: "center",
             }}
           />
