@@ -98,7 +98,7 @@ export default function LoadingScreen({ title, gifUrl, longWait, startTime }: Lo
 
         {longWait && (
           <p className="text-sm font-bold text-copa-blue text-center -mt-4" style={{ fontFamily: "var(--font-papernotes)" }}>
-            No cierres esta pantalla, puede tardar hasta 2 minutos.
+            No cierres esta pantalla, puede tardar hasta 2 minutos, ya que estamos generando tu figurita en alta calidad.
           </p>
         )}
 
@@ -114,7 +114,7 @@ export default function LoadingScreen({ title, gifUrl, longWait, startTime }: Lo
             <p className="text-base font-bold text-copa-blue" style={{ fontFamily: "var(--font-papernotes)" }}>
               ¡Conseguí tu figurita HOY y participá por un ingreso a la Copa!
             </p>
-            <p className="text-4xl font-black text-copa-green my-1" style={{ fontFamily: "var(--font-titulo)" }}>
+            <p className="text-2xl md:text-4xl font-black text-copa-green my-1" style={{ fontFamily: "var(--font-titulo)" }}>
               Copa del Mundo 2026
             </p>
             <p className="text-sm text-copa-blue mt-2" style={{ fontFamily: "var(--font-papernotes)" }}>
@@ -136,9 +136,12 @@ export default function LoadingScreen({ title, gifUrl, longWait, startTime }: Lo
 
         <div className="w-full">
           <div className="flex justify-between items-center mb-1">
-            <span className="text-xs font-bold text-copa-blue" style={{ fontFamily: "var(--font-papernotes)" }}>
-              {"Cargando..."}
-            </span>
+            <div style={{ fontFamily: "var(--font-papernotes)" }}>
+              <span className="text-xs font-bold text-copa-blue">Cargando...</span>
+              {longWait && (
+                <span className="text-xs text-copa-blue opacity-60 ml-1">{elapsed}s</span>
+              )}
+            </div>
             <span className="text-sm font-bold text-copa-blue" style={{ fontFamily: "var(--font-papernotes)" }}>
               {percent}%
             </span>
