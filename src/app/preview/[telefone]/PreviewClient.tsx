@@ -48,7 +48,7 @@ interface Props {
 
 export default function PreviewClient({ imageUrl, nome, stickerId }: Props) {
   const handleCheckout = () => {
-    const checkoutUrl = process.env.NEXT_PUBLIC_CHECKOUT_URL || "https://folem.mycartpanda.com/checkout/211132863:1";
+    const checkoutUrl = process.env.NEXT_PUBLIC_CHECKOUT_URL || "https://buy.stripe.com/5kQ00jfSb01P1JH0nR5Vu05";
     const params = new URLSearchParams(window.location.search);
     const utmKeys = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "fbclid", "gclid", "ttclid", "sck", "src"];
     const utms: string[] = [];

@@ -7,7 +7,7 @@ export default function VerPreco() {
       stickerUrl="/mateo.webp"
       stickerId="preview"
       onRetry={() => {}}
-      checkoutUrl="https://folem.mycartpanda.com/checkout/211132863:1"
+      checkoutUrl="https://buy.stripe.com/5kQ00jfSb01P1JH0nR5Vu05"
       price="$3.500"
     />
   );

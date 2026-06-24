@@ -67,7 +67,7 @@ const CATALOG: CatalogProduct[] = [
     name: "Paquetito Copa 2026",
     desc: "Hacé la experiencia más inmersiva con el PDF de los paquetitos oficiales",
     renderImage: (bought) => <ProductImg src="/embalagensfigurinhas.webp" alt="Kit Embalagem Copa 2026" bought={bought} />,
-    acquireUrl: "https://checkout.figurinhadacopadomundo.com/VCCL1O8SD2HQ",
+    acquireUrl: "https://buy.stripe.com/5kQ00jfSb01P1JH0nR5Vu05",
     downloadLabel: "Descargar PDF",
     checkBought: (d) =>
       d.items.some(i =>
@@ -87,7 +87,7 @@ const CATALOG: CatalogProduct[] = [
     name: "Poster A4",
     desc: "Descargá el PDF para imprimir y decorar tu casa",
     renderImage: (bought) => <ProductImg src="/poster.webp" alt="Poster A4 PDF" bought={bought} />,
-    acquireUrl: "https://checkout.figurinhadacopadomundo.com/VCCL1O8SD2HR",
+    acquireUrl: "https://buy.stripe.com/5kQ00jfSb01P1JH0nR5Vu05",
     checkBought: (d) =>
       d.items.some(i =>
         i.offer_name?.toLowerCase().includes("poster") ||
@@ -103,7 +103,7 @@ const CATALOG: CatalogProduct[] = [
     name: "Figurita Messi",
     desc: "Camiseta de la selección — paquete en PDF para impresión",
     renderImage: (bought) => <ProductImg src="/figurinhamessi.webp" alt="Figurita Messi" bought={bought} />,
-    acquireUrl: "https://checkout.figurinhadacopadomundo.com/VCCL1O8SD2HT",
+    acquireUrl: "https://buy.stripe.com/5kQ00jfSb01P1JH0nR5Vu05",
     checkBought: (d) =>
       d.items.some(i =>
         i.offer_name?.toLowerCase().includes("messi") ||
@@ -395,7 +395,7 @@ function PosterA4Card({ data, width = 250 }: { data: MemberData; width?: number 
               </div>
             </>
           ) : (
-            <a href="https://checkout.figurinhadacopadomundo.com/VCCL1O8SD2HR" style={{
+            <a href="https://buy.stripe.com/5kQ00jfSb01P1JH0nR5Vu05" style={{
               display: "block", textAlign: "center",
               background: "#74ACDF", color: "#002395",
               borderRadius: 12, padding: "11px 8px", fontSize: 13, fontWeight: 900,
@@ -473,7 +473,7 @@ function MessiCard({ data, width = 250 }: { data: MemberData; width?: number }) 
           </div>
         ) : (
           <a
-            href="https://checkout.figurinhadacopadomundo.com/VCCL1O8SD2HT"
+            href="https://buy.stripe.com/5kQ00jfSb01P1JH0nR5Vu05"
             style={{
               display: "block", textAlign: "center",
               background: "#74ACDF", color: "#002395",

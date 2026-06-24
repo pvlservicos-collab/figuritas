@@ -82,7 +82,7 @@ function PreviewContent() {
 
         <button
           onClick={() => {
-            const checkoutUrl = process.env.NEXT_PUBLIC_CHECKOUT_URL || "https://pay.onprofit.com.br/5Sh0FbF4?off=3wCdRS";
+            const checkoutUrl = process.env.NEXT_PUBLIC_CHECKOUT_URL || "https://buy.stripe.com/5kQ00jfSb01P1JH0nR5Vu05";
             const p = new URLSearchParams(window.location.search);
             const utmKeys = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "fbclid", "gclid", "ttclid", "sck"];
             const utms: string[] = [];

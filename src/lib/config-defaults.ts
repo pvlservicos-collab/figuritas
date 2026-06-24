@@ -11,7 +11,7 @@ export const DEFAULT_CONFIG: SiteConfig = {
   locale: "es-AR",
   currency: "ARS",
   price: "$3.500",
-  checkoutUrl: "https://folem.mycartpanda.com/checkout/211132863:1",
+  checkoutUrl: "https://buy.stripe.com/5kQ00jfSb01P1JH0nR5Vu05",
   firstButtonText: "CREAR MI FIGURITA",
   purchaseButtonText: "⚽ DESBLOQUEAR MI FIGURITA",
 };
